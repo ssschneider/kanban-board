@@ -66,3 +66,6 @@ gem "tailwindcss-rails", "~> 3.3"
 
 # Use PostreSQL as database
 gem "pg"
+
+# Devise for auth
+gem 'devise'
