@@ -1,4 +1,4 @@
-<%= form_with model: @task, url: tasks_path, method: :post, class: "flex flex-col gap-4 container" do |form| %>
+<%= form_with model: @task, class: "flex flex-col gap-4 container" do |form| %>
   <div class="flex flex-col container gap-2">
     <%= form.label :title, "Task Title", class: "text-sm font-medium" %>
     <%= form.text_field :title, value: task.title, class: "w-full border border-white rounded px-3 py-2 bg-transparent" %>
@@ -9,7 +9,7 @@
     <%= form.text_area :description, value: task.description, class: "w-full border border-white rounded px-3 py-2 bg-transparent resize-none", rows: 5 %>
   </div>
 
-    <%= form.submit "Edit Task", class: "bg-white text-slate-950 px-4 py-2 rounded hover:opacity-75" %>
+    <%= form.submit "Save Task", class: "bg-white text-slate-950 px-4 py-2 rounded hover:opacity-75" %>
   <% end %>
 
   <%= link_to root_path, 
