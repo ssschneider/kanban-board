@@ -23,9 +23,40 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+  <body class="container h-screen mx-auto mt-8 px-6 flex flex-col bg-slate-950 text-white">
+    <header class="flex justify-between items-center">
+      <% if current_user %>
+        <h1>Hello, <%= current_user.name %></h1>
+
+        <%# Devise signout button %>
+        <%= button_to "Sign Out", destroy_user_session_path, :method => :delete , class: "bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700" %>
+      <% else %>
+        <div class="container flex justify-end items-center gap-2">
+          <%= link_to 'Login', new_user_session_path, class: 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700' %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700' %>
+        </div>
+      <% end %>
+    </header>
+
+    <main class="flex-1">
+      <% if user_signed_in? %>
+        <%= yield %> <!-- Logged user -->
+      <% else %>
+        <h2>Bem-vindo à nossa página!</h2>
+        <!-- Renderiza o conteúdo do Devise -->
+          <% if controller_name == 'sessions' && action_name == 'new' %>
+            <%= render template: 'devise/sessions/new' %> <!-- Renderiza a página de login -->
+          <% elsif controller_name == 'registrations' && action_name == 'new' %>
+            <%= render template: 'devise/registrations/new' %> <!-- Renderiza a página de registro -->
+          <% else %>
+            <!-- Caso não seja o login ou registro, renderiza uma página personalizada -->
+            <h3>Você não está autenticado. Faça login ou cadastre-se.</h3>
+          <% end %>
+      <% end %>
     </main>
+
+    <footer class="flex justify-center items-center py-2">
+      Developed with ❤️ with Ruby on Rails
+    </footer>
   </body>
 </html>

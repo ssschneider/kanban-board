@@ -1,0 +1,10 @@
+<h1 class="text-3xl font-bold underline">
+  Tasks
+</h1>
+
+<% @tasks.each do |task| %>
+  <h2><%= task.title %></h2>
+  <p><%= task.description %></p>
+  <p><%= task.status %></p>
+  <hr/>
+<% end %>
