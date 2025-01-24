@@ -46,17 +46,14 @@
       <% if user_signed_in? %>
         <%= yield %> <!-- Logged user -->
       <% else %>
-        <h2>Bem-vindo à nossa página!</h2>
-          <% if controller_name == 'sessions' && action_name == 'new' %>
-            <%= render template: 'devise/sessions/new' %> <!-- Renderiza a página de login -->
-          <% elsif controller_name == 'registrations' && action_name == 'new' %>
-            <%= render template: 'devise/registrations/new' %> <!-- Renderiza a página de registro -->
-          <% else %>
-            <!-- Caso não seja o login ou registro, renderiza uma página personalizada -->
-            <h3>Você não está autenticado. Faça login ou cadastre-se.</h3>
-          <% end %>
+        <%= render template: 'devise/sessions/new' if controller_name == 'sessions' %>  <!-- Página de login -->
+        <%= render template: 'devise/registrations/new' if controller_name == 'registrations' %>  <!-- Página de registro -->
+        <% unless controller_name == 'sessions' || controller_name == 'registrations' %>
+          <h3>Você não está autenticado. Faça login ou cadastre-se.</h3>
+        <% end %>
       <% end %>
     </main>
+
 
     <footer class="flex justify-center items-center py-2">
       Developed with ❤️ with Ruby on Rails
