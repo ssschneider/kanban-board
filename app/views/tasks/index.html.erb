@@ -59,7 +59,7 @@
                 <% end %>
 
                 <div class="flex-1 flex justify-end items-end gap-4">
-                  <%= button_to edit_task_path(task.id), method: :patch, remote: true, 
+                  <%= link_to edit_task_path(task), method: :patch, remote: true, 
                     class: "flex items-center justify-center p-3 rounded border border-white hover:cursor-pointer" do %>
                       <%= image_tag 'icons/pencil.svg', alt: 'Pencil icon', class: 'size-6 text-white' %>
                   <% end %>

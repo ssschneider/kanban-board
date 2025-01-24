@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [ :destroy ]
+  before_action :set_task, only: [ :destroy, :edit, :update ]
   def index
     @tasks_count = Task.count
 
@@ -54,6 +54,18 @@ class TasksController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def edit
+  end
+
+  def update
+    if @task.update(task_params)
+      redirect_to root_path, notice: 'Task updated successfully.'
+    else
+      render :edit
+    end
+  end
+
 
   def destroy
     if @task.destroy
