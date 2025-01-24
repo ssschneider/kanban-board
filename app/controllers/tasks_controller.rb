@@ -1,31 +1,30 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [ :destroy, :edit, :update ]
   def index
-    @tasks_count = Task.count
+    today_range = Time.zone.now.beginning_of_day..Time.zone.now.end_of_day
 
-    # Defina valores padrão vazios para as variáveis
-    @pending = Task.where(status: "pending")
-    @completed = Task.where(status: "completed")
-    @in_progress = Task.where(status: "in-progress")
+    @tasks_count = Task.where(created_at: today_range).count
 
-    # Aplica o filtro se params[:status] for fornecido
+    @pending = Task.where(status: "pending", created_at: today_range)
+    @completed = Task.where(status: "completed", created_at: today_range)
+    @in_progress = Task.where(status: "in-progress", created_at: today_range)
+
+    # Aplica o filtro de status, se presente
     if params[:status].present?
       case params[:status]
       when "pending"
-        @pending = @pending
         @completed = Task.none
         @in_progress = Task.none
       when "completed"
-        @completed = @completed
         @pending = Task.none
         @in_progress = Task.none
       when "in-progress"
-        @in_progress = @in_progress
         @pending = Task.none
         @completed = Task.none
       end
     end
   end
+
 
   def update_status
     @task = Task.find(params[:id])
