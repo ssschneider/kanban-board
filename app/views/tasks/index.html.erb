@@ -19,6 +19,7 @@
           <li class="bg-slate-700 border-b border-b-slate-400 last:border-b-transparent py-2 flex flex-col">
               <h2 class="text-lg"><%= task.title %></h2>
               <p class="text-slate-400 text-sm"><%= task.description %></p>
+              <span class="text-sm text-slate-500 bg-slate-800 px-4 py-2 rounded w-fit lowercase"><%= task.user.name %></span>
               <nav class="container flex justify-between items-center pt-3">
                 <%= button_to update_status_task_path(task.id, status: 'in-progress'), method: :patch, remote: true, 
                   class: "bg-white text-slate-950 font-medium px-4 py-2 rounded hover:cursor-pointer flex items-center gap-2 h-full" do %>
