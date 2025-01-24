@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: [ :destroy ]
   def index
     @tasks_count = Task.count
 
@@ -54,9 +55,22 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    if @task.destroy
+      respond_to do |format|
+        format.js   # Vai procurar o arquivo destroy.js.erb
+      end
+    else
+      render json: { error: 'There was a problem deleting this task' }, status: 400
+    end
+  end
+
   private
   def task_params
     params.require(:task).permit(:title, :description)
   end
 
+  def set_task
+    @task = Task.find(params[:id])
+  end
 end

@@ -1,0 +1,4 @@
+var taskElement = document.getElementById("task_<%= @task.id %>");
+if (taskElement) {
+  taskElement.remove();
+}

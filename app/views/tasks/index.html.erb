@@ -63,10 +63,12 @@
                     class: "flex items-center justify-center p-3 rounded border border-white hover:cursor-pointer" do %>
                       <%= image_tag 'icons/pencil.svg', alt: 'Pencil icon', class: 'size-6 text-white' %>
                   <% end %>
-                  <%= button_to tasks_path(task.id, status: 'in-progress'), method: :delete, remote: true, 
-                    class: "flex items-center justify-center p-3 rounded border border-white  hover:cursor-pointer" do %>
-                      <%= image_tag 'icons/trash.svg', alt: 'Arrow icon', class: 'size-6 text-white' %>
+                  <%= button_to task_path(task), method: :delete, remote: true, class: "flex items-center justify-center p-3 rounded border border-white hover:cursor-pointer" do %>
+                    <%= image_tag 'icons/trash.svg', alt: 'Delete icon', class: 'size-6 text-white' %>
                   <% end %>
+
+
+
                 </div>
             </nav>
           </li>
