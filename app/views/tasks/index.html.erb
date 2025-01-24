@@ -52,6 +52,12 @@
               <h2 class="text-lg"><%= task.title %></h2>
               <p class="text-slate-400 text-sm"><%= task.description %></p>
               <nav class="container flex justify-between items-center pt-3">
+                <%= button_to update_status_task_path(task.id, status: 'completed'), method: :patch, remote: true, 
+                  class: "bg-white text-slate-950 font-medium px-4 py-2 rounded hover:cursor-pointer flex items-center gap-2 h-full" do %>
+                      Complete Task
+                      <%= image_tag 'icons/chevron-right.svg', alt: 'Arrow icon', class: 'size-6 text-slate-950' %>
+                <% end %>
+
                 <div class="flex-1 flex justify-end items-end gap-4">
                   <%= button_to edit_task_path(task.id), method: :patch, remote: true, 
                     class: "flex items-center justify-center p-3 rounded border border-white hover:cursor-pointer" do %>
