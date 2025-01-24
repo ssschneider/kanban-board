@@ -78,7 +78,7 @@ rspec <path>
 1. Clone the Repository
 
 ```bash
-git clone 
+git clone https://github.com/ssschneider/kanban-board.git
 ```
 
 2. Install dependencies with Bundler
