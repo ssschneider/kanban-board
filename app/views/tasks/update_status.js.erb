@@ -1,0 +1,11 @@
+var taskElement = document.getElementById("task_<%= @task.id %>");
+taskElement.innerHTML = "<h2><%= @task.title %></h2>" + 
+                        "<p><%= @task.description %></p>" + 
+                        "<p>Status: <%= @task.status %></p>";
+
+
+if ("<%= @task.status %>" === "in-progress") {
+  document.querySelector(".doing-column ul").appendChild(taskElement);
+} else if ("<%= @task.status %>" === "completed") {
+  document.querySelector(".completed-column ul").appendChild(taskElement);
+}

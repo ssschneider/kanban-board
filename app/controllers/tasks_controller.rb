@@ -26,4 +26,18 @@ class TasksController < ApplicationController
     end
   end
 
+  def update_status
+    @task = Task.find(params[:id])
+    new_status = params[:status] # Pega o novo status vindo do AJAX
+
+    if @task.update(status: new_status)
+      respond_to do |format|
+        format.js # Vai procurar o arquivo update_status.js.erb
+      end
+    else
+      render json: { error: 'There was a problem updating this task' }, status: 400
+    end
+  end
+
+
 end

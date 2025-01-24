@@ -16,5 +16,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "tasks#index"
 
-  resources :tasks
+  resources :tasks do
+    member do
+      patch "update_status"
+    end
+  end
 end
