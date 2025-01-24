@@ -24,13 +24,16 @@
 
   </head>
 
-  <body class="container h-screen mx-auto mt-8 px-6 flex flex-col bg-slate-950 text-white">
+  <body class="container h-screen mx-auto py-6 flex flex-col gap-4 bg-slate-950 text-white">
     <header class="flex justify-between items-center">
       <% if current_user %>
         <h1>Hello, <%= current_user.name %></h1>
 
         <%# Devise signout button %>
-        <%= button_to "Sign Out", destroy_user_session_path, :method => :delete , class: "bg-red-500 text-white py-2 px-4 rounded hover:bg-red-700" %>
+        <%= button_to destroy_user_session_path, :method => :delete , class: "bg-red-500 text-white font-medium py-2 px-4 rounded hover:bg-red-700 flex items-center gap-2 h" do %>
+          Sign Out
+          <%= image_tag 'icons/sign-out.svg', alt: 'Sign out icon', class: 'size-6 text-slate-950' %>
+        <% end %>
       <% else %>
         <div class="container flex justify-end items-center gap-2">
           <%= link_to 'Login', new_user_session_path, class: 'bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700' %>
@@ -44,7 +47,6 @@
         <%= yield %> <!-- Logged user -->
       <% else %>
         <h2>Bem-vindo à nossa página!</h2>
-        <!-- Renderiza o conteúdo do Devise -->
           <% if controller_name == 'sessions' && action_name == 'new' %>
             <%= render template: 'devise/sessions/new' %> <!-- Renderiza a página de login -->
           <% elsif controller_name == 'registrations' && action_name == 'new' %>

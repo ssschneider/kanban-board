@@ -1,6 +1,6 @@
 <section class="bg-slate-900 p-8 flex flex-col gap-4 rounded h-full">
   <div class="container flex justify-between items-center">
-    <h2>You have <%= @tasks_count %> tasks </h2>
+    <h2>You have <%= @tasks_count %> tasks today</h2>
 
     <%= link_to new_task_path, 
         class: "bg-white text-slate-950 font-medium px-4 py-2 rounded hover:cursor-pointer flex justify-center items-center gap-2 hover:cursor-pointer hover:opacity-75" do %>
@@ -78,7 +78,7 @@
 
       <ul class="list-none flex-1 flex flex-col overflow-y-auto">
         <% @completed.each do |task| %>
-          <li class="bg-slate-700 border-b border-b-slate-400 py-2">
+          <li class="bg-slate-700 border-b border-b-slate-400 last:border-b-transparent py-2">
               <h2><%= task.title %></h2>
               <p><%= task.description %></p>
               <nav class="container flex justify-between items-center pt-3">
