@@ -1,5 +1,13 @@
 <section class="bg-slate-900 p-8 flex flex-col gap-4 rounded h-full">
-  <h2>You have <%= @tasks_count %> tasks </h2>
+  <div class="container flex justify-between items-center">
+    <h2>You have <%= @tasks_count %> tasks </h2>
+
+    <%= link_to new_task_path, 
+        class: "bg-white text-slate-950 font-medium px-4 py-2 rounded hover:cursor-pointer flex justify-center items-center gap-2 hover:cursor-pointer hover:opacity-75" do %>
+      <%= image_tag 'icons/plus.svg', alt: 'Plus icon', class: 'size-6 text-slate-950' %>
+      New Task
+    <% end %>
+  </div>
 
   <div class="flex gap-2 rounded bg-slate-800 container justify-between items-start h-full">
     <%# KANBAN COLUMN %>

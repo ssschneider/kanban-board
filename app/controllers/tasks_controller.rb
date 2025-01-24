@@ -39,5 +39,24 @@ class TasksController < ApplicationController
     end
   end
 
+  def new
+    @task = Task.new
+  end
+
+  def create
+    @task = Task.new(task_params)
+    @task.user_id = current_user.id
+    if @task.save!
+      redirect_to root_path, notice: "Task created successfully!"
+    else
+      flash.now[:alert] = "There was a problem creating the task."
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+  def task_params
+    params.require(:task).permit(:title, :description)
+  end
 
 end
