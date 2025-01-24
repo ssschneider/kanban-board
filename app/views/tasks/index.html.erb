@@ -11,9 +11,24 @@
           <li class="bg-slate-700 border-b border-b-slate-400 last:border-b-transparent py-2 flex flex-col">
               <h2 class="text-lg"><%= task.title %></h2>
               <p class="text-slate-400 text-sm"><%= task.description %></p>
-              <%= button_to 'Start Task', update_status_task_path(task.id, status: 'in-progress'), 
-                method: :patch, remote: true, 
-                class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" %>
+              <nav class="container flex justify-between items-center pt-3">
+                <%= button_to update_status_task_path(task.id, status: 'in-progress'), method: :patch, remote: true, 
+                  class: "bg-blue-500 text-white px-4 py-2 rounded hover:cursor-pointer flex items-center gap-2 h-full" do %>
+                      Start Task
+                      <%= image_tag 'icons/chevron-right.svg', alt: 'Arrow icon', class: 'size-6 text-white' %>
+                <% end %>
+
+                <div class="flex-1 flex justify-end items-end gap-4">
+                  <%= button_to update_status_task_path(task.id, status: 'in-progress'), method: :patch, remote: true, 
+                    class: "flex items-center justify-center p-3 rounded border border-white hover:cursor-pointer" do %>
+                      <%= image_tag 'icons/pencil.svg', alt: 'Pencil icon', class: 'size-6 text-white' %>
+                  <% end %>
+                  <%= button_to update_status_task_path(task.id, status: 'in-progress'), method: :patch, remote: true, 
+                    class: "flex items-center justify-center p-3 rounded border border-red-500  hover:cursor-pointer" do %>
+                      <%= image_tag 'icons/trash.svg', alt: 'Arrow icon', class: 'size-6 text-white' %>
+                  <% end %>
+                </div>
+            </nav>
           </li>
         <% end %>
       </ul>
@@ -28,9 +43,24 @@
           <li class="bg-slate-700 border-b border-b-slate-400 last:border-b-transparent py-2 flex flex-col">
               <h2 class="text-lg"><%= task.title %></h2>
               <p class="text-slate-400 text-sm"><%= task.description %></p>
-              <%= button_to 'Complete Task', update_status_task_path(task.id, status: 'completed'), 
-                method: :patch, remote: true, 
-                class: "bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" %>
+              <nav class="container flex justify-between items-center pt-3">
+                <%= button_to update_status_task_path(task.id, status: 'completed'), method: :patch, remote: true, 
+                  class: "bg-blue-500 text-white py-2 px-4 rounded hover:cursor-pointer flex items-center gap-2 h-full" do %>
+                      Complete Task
+                      <%= image_tag 'icons/chevron-right.svg', alt: 'Arrow icon', class: 'size-6 text-white' %>
+                <% end %>
+
+                <div class="flex-1 flex justify-end items-end gap-4">
+                  <%= button_to update_status_task_path(task.id, status: 'in-progress'), method: :patch, remote: true, 
+                    class: "flex items-center justify-center p-3 rounded border border-white hover:cursor-pointer" do %>
+                      <%= image_tag 'icons/pencil.svg', alt: 'Pencil icon', class: 'size-6 text-white' %>
+                  <% end %>
+                  <%= button_to update_status_task_path(task.id, status: 'in-progress'), method: :patch, remote: true, 
+                    class: "flex items-center justify-center p-3 rounded border border-red-500  hover:cursor-pointer" do %>
+                      <%= image_tag 'icons/trash.svg', alt: 'Arrow icon', class: 'size-6 text-white' %>
+                  <% end %>
+                </div>
+            </nav>
           </li>
         <% end %>
       </ul>
@@ -45,7 +75,14 @@
           <li class="bg-slate-700 border-b border-b-slate-400 py-2">
               <h2><%= task.title %></h2>
               <p><%= task.description %></p>
-              <p><%= task.status %></p>
+              <nav class="container flex justify-between items-center pt-3">
+                <div class="flex-1 flex justify-end items-end gap-4">
+                  <%= button_to update_status_task_path(task.id, status: 'in-progress'), method: :patch, remote: true, 
+                    class: "flex items-center justify-center p-3 rounded border border-red-500  hover:cursor-pointer" do %>
+                      <%= image_tag 'icons/trash.svg', alt: 'Arrow icon', class: 'size-6 text-white' %>
+                  <% end %>
+                </div>
+            </nav>
           </li>
         <% end %>
       </ul>
